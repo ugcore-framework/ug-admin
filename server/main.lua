@@ -1,0 +1,3 @@
+UgDev               = { }
+
+UgDev.AdminsOnDuty  = { }
