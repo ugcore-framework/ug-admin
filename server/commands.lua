@@ -438,6 +438,70 @@ end, true, {
     }
 })
 
-UgCore.Commands.CreateCommand('job', 'user', function (player, showError)
+UgCore.Commands.CreateCommand('job', 'user', function (player, args, showError)
     print(player.job.name .. ' - ' .. player.job.grade)
 end, false, { })
+
+UgCore.Commands.CreateCommand('clearinventory', Config.AdminGroups, function (player, args, showError)
+    if UgDev.Functions.IsPlayerInAdminMode(player.license) then
+        if not args.Item or type(args.Item) ~= 'string' then
+            for _, v in pairs(args.ID.inventory) do
+                if v.count > 0 then
+                    args.ID.Functions.SetItem(v.name, 0)
+                end
+            end
+            args.ID.Functions.Notify('Admin', Languages.GetTranslation('command_clearinventory_items_cleared', player.Functions.GetSteamName(), player.source), 'info', 5000)
+            player.Functions.Notify('Admin', Languages.GetTranslation('command_clearinventory_cleared', args.ID.Functions.GetSteamName(), args.ID.source), 'success', 5000)
+        else
+            args.ID.Functions.SetItem(args.Item, 0)
+            args.ID.Functions.Notify('Admin', Languages.GetTranslation('command_clearinventory_item_cleared', args.Item, player.Functions.GetSteamName(), player.source), 'info', 5000)
+            player.Functions.Notify('Admin', Languages.GetTranslation('command_clearinventory_cleared', args.ID.Functions.GetSteamName(), args.ID.source), 'success', 5000)
+        end
+    else
+        local msgData = {
+            title = 'Admin',
+            message = 'You must be in STAFF Mode to use this!',
+            type = 'error',
+            length = 5000
+        }
+        return showError(msgData)
+    end
+end, true, {
+    help = Languages.GetTranslation('command_clearinventory'),
+    validate = false,
+    arguments = {
+        { name = 'ID', validate = true, help = Languages.GetTranslation('command_clearinventory_id'), type = 'player' },
+        { name = 'Item', validate = false, help = Languages.GetTranslation('command_clearinventory_item'), type = 'string' },
+    },
+})
+
+UgCore.Commands.CreateCommand('clearloadout', Config.AdminGroups, function (player, args, showError)
+    if UgDev.Functions.IsPlayerInAdminMode(player.license) then
+        if not args.Weapon or type(args.Weapon) ~= 'string' then
+            for _, v in pairs(args.ID.loadout) do
+                args.ID.Functions.RemoveWeapon(v.name)
+            end
+            args.ID.Functions.Notify('Admin', Languages.GetTranslation('command_clearloadout_weapons_cleared', player.Functions.GetSteamName(), player.source), 'info', 5000)
+            player.Functions.Notify('Admin', Languages.GetTranslation('command_clearloadout_cleared', args.ID.Functions.GetSteamName(), args.ID.source), 'success', 5000)
+        else
+            args.ID.Functions.RemoveWeapon(args.Weapon)
+            args.ID.Functions.Notify('Admin', Languages.GetTranslation('command_clearloadout_weapon_cleared', args.Weapon, player.Functions.GetSteamName(), player.source), 'info', 5000)
+            player.Functions.Notify('Admin', Languages.GetTranslation('command_clearloadout_cleared', args.ID.Functions.GetSteamName(), args.ID.source), 'success', 5000)
+        end
+    else
+        local msgData = {
+            title = 'Admin',
+            message = 'You must be in STAFF Mode to use this!',
+            type = 'error',
+            length = 5000
+        }
+        return showError(msgData)
+    end
+end, true, {
+    help = Languages.GetTranslation('command_clearloadout'),
+    validate = false,
+    arguments = {
+        { name = 'ID', validate = true, help = Languages.GetTranslation('command_clearloadout_id'), type = 'player' },
+        { name = 'Weapon', validate = false, help = Languages.GetTranslation('command_clearloadout_weapon'), type = 'string' },
+    },
+})

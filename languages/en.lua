@@ -72,5 +72,19 @@ Language['en'] = {
     ['command_giveitem_id'] = 'ID of the player to give an item.',
     ['command_giveitem_item'] = 'Name of the item.',
     ['command_giveitem_amount'] = 'Amount of items to give.',
-    ['command_giveitem_success'] = 'You successfully gave the item!'
+    ['command_giveitem_success'] = 'You successfully gave the item!',
+
+    ['command_clearinventory'] = 'Clear an entire inventory or an item from a player',
+    ['command_clearinventory_id'] = 'ID of the player to clear the inventory an item.',
+    ['command_clearinventory_item'] = '(OPTIONAL) - Name of the item to be cleared.',
+    ['command_clearinventory_items_cleared'] = 'Your items got cleared by %s (ID: %s)',
+    ['command_clearinventory_item_cleared'] = 'All of the "%s" you had got cleared by %s (ID: %s)',
+    ['command_clearinventory_cleared'] = 'You successfully cleared the items from %s (ID: %s)',
+    
+    ['command_clearloadout'] = 'Clear an entire inventory weapon list or a specified weapon from a player',
+    ['command_clearloadout_id'] = 'ID of the player to clear the inventory a weapon.',
+    ['command_clearloadout_weapon'] = '(OPTIONAL) - Name of the weapon to be cleared.',
+    ['command_clearloadout_weapons_cleared'] = 'Your weapons got cleared by %s (ID: %s)',
+    ['command_clearloadout_weapon_cleared'] = 'All of the weapons "%s" you had got cleared by %s (ID: %s)',
+    ['command_clearloadout_cleared'] = 'You successfully cleared the weapons from %s (ID: %s)',
 }
