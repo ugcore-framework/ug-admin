@@ -87,4 +87,25 @@ Language['en'] = {
     ['command_clearloadout_weapons_cleared'] = 'Your weapons got cleared by %s (ID: %s)',
     ['command_clearloadout_weapon_cleared'] = 'All of the weapons "%s" you had got cleared by %s (ID: %s)',
     ['command_clearloadout_cleared'] = 'You successfully cleared the weapons from %s (ID: %s)',
+
+    ['command_givemoney'] = 'Give money to the account of a player.',
+    ['command_givemoney_id'] = 'ID of the player to give the money.',
+    ['command_givemoney_account'] = 'Account of the player to give.',
+    ['command_givemoney_amount'] = 'Amount of money to give to the player account.',
+    ['command_givemoney_gave'] = 'You gave $%s to the account of %s (ID: %s)',
+    ['command_givemoney_received'] = 'You received $%s from the admin %s (ID: %s)',
+
+    ['command_removemoney'] = 'Remove money from the account of a player.',
+    ['command_removemoney_id'] = 'ID of the player to remove the money.',
+    ['command_removemoney_account'] = 'Account of the player to remove.',
+    ['command_removemoney_amount'] = 'Amount of money to remove from the player account.',
+    ['command_removemoney_removed'] = 'You removed $%s from the account %s (ID: %s)',
+    ['command_removemoney_remove'] = 'You got removed $%s from the admin %s (ID: %s)',
+
+    ['command_setmoney'] = 'Set a certain amount of money to the account of a player.',
+    ['command_setmoney_id'] = 'ID of the player to set the money.',
+    ['command_setmoney_account'] = 'Account of the player to set.',
+    ['command_setmoney_amount'] = 'Amount of money to set to the player account.',
+    ['command_setmoney_setted'] = 'You setted $%s to the account of %s (ID: %s)',
+    ['command_setmoney_set'] = 'Your money was setted to $%s by the admin %s (ID: %s)'
 }

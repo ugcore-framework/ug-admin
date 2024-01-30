@@ -505,3 +505,102 @@ end, true, {
         { name = 'Weapon', validate = false, help = Languages.GetTranslation('command_clearloadout_weapon'), type = 'string' },
     },
 })
+
+UgCore.Commands.CreateCommand('givemoney', Config.AdminGroups, function (player, args, showError)
+    if UgDev.Functions.IsPlayerInAdminMode(player.license) then
+        if not args.ID.Functions.GetAccount(args.Account) then
+            local msgData = {
+                title = 'Admin',
+                message = 'The account is invalid!',
+                type = 'error',
+                length = 5000
+            }
+            return showError(msgData)
+        end
+        args.ID.Functions.GiveMoney(args.Account, args.Money, 'Government')
+        args.ID.Functions.Notify('Admin', Languages.GetTranslation('command_givemoney_received', args.Money, player.Functions.GetSteamName(), player.source), 'info', 5000)
+        player.Functions.Notify('Admin', Languages.GetTranslation('command_givemoney_gave', args.Money, args.ID.Functions.GetSteamName(), args.ID.source), 'success', 5000)
+    else
+        local msgData = {
+            title = 'Admin',
+            message = 'You must be in STAFF Mode to use this!',
+            type = 'error',
+            length = 5000
+        }
+        return showError(msgData)
+    end
+end, true, {
+    help = Languages.GetTranslation('command_givemoney'),
+    validate = true,
+    arguments = {
+        { name = 'ID', validate = true, help = Languages.GetTranslation('command_givemoney_id'), type = 'player' },
+        { name = 'Account', validate = true, help = Languages.GetTranslation('command_givemoney_account'), type = 'string' },
+        { name = 'Money', validate = true, help = Languages.GetTranslation('command_givemoney_amount'), type = 'number' },
+    },
+})
+
+UgCore.Commands.CreateCommand('removemoney', Config.AdminGroups, function (player, args, showError)
+    if UgDev.Functions.IsPlayerInAdminMode(player.license) then
+        if not args.ID.Functions.GetAccount(args.Account) then
+            local msgData = {
+                title = 'Admin',
+                message = 'The account is invalid!',
+                type = 'error',
+                length = 5000
+            }
+            return showError(msgData)
+        end
+        args.ID.Functions.RemoveMoney(args.Account, args.Money, 'Government')
+        args.ID.Functions.Notify('Admin', Languages.GetTranslation('command_removemoney_remove', args.Money, player.Functions.GetSteamName(), player.source), 'info', 5000)
+        player.Functions.Notify('Admin', Languages.GetTranslation('command_removemoney_removed', args.Money, args.ID.Functions.GetSteamName(), args.ID.source), 'success', 5000)
+    else
+        local msgData = {
+            title = 'Admin',
+            message = 'You must be in STAFF Mode to use this!',
+            type = 'error',
+            length = 5000
+        }
+        return showError(msgData)
+    end
+end, true, {
+    help = Languages.GetTranslation('command_removemoney'),
+    validate = true,
+    arguments = {
+        { name = 'ID', validate = true, help = Languages.GetTranslation('command_removemoney_id'), type = 'player' },
+        { name = 'Account', validate = true, help = Languages.GetTranslation('command_removemoney_account'), type = 'string' },
+        { name = 'Money', validate = true, help = Languages.GetTranslation('command_removemoney_amount'), type = 'number' },
+    },
+})
+
+UgCore.Commands.CreateCommand('setmoney', Config.AdminGroups, function (player, args, showError)
+    if UgDev.Functions.IsPlayerInAdminMode(player.license) then
+        if not args.ID.Functions.GetAccount(args.Account) then
+            local msgData = {
+                title = 'Admin',
+                message = 'The account is invalid!',
+                type = 'error',
+                length = 5000
+            }
+            return showError(msgData)
+        end
+        args.ID.Functions.SetMoney(args.Account, args.Money, 'Government')
+        args.ID.Functions.Notify('Admin', Languages.GetTranslation('command_setmoney_set', args.Money, player.Functions.GetSteamName(), player.source), 'info', 5000)
+        player.Functions.Notify('Admin', Languages.GetTranslation('command_setmoney_setted', args.Money, args.ID.Functions.GetSteamName(), args.ID.source), 'success', 5000)
+    else
+        local msgData = {
+            title = 'Admin',
+            message = 'You must be in STAFF Mode to use this!',
+            type = 'error',
+            length = 5000
+        }
+        return showError(msgData)
+    end
+end, true, {
+    help = Languages.GetTranslation('command_setmoney'),
+    validate = true,
+    arguments = {
+        { name = 'ID', validate = true, help = Languages.GetTranslation('command_setmoney_id'), type = 'player' },
+        { name = 'Account', validate = true, help = Languages.GetTranslation('command_setmoney_account'), type = 'string' },
+        { name = 'Money', validate = true, help = Languages.GetTranslation('command_setmoney_amount'), type = 'number' },
+    },
+})
