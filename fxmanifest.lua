@@ -25,5 +25,6 @@ server_scripts {
     'server/functions.lua',
     'server/events.lua',
     'server/commands.lua',
-    'server/callbacks.lua'
+    'server/callbacks.lua',
+    'server/version.lua'
 }
