@@ -331,21 +331,28 @@ end, false, {
 })
 
 UgCore.Commands.CreateCommand('setgroup', Config.AdminGroups, function (player, args, showError)
-    if UgDev.Functions.IsPlayerInAdminMode(player.license) then
+    if player and player.source > 0 then
+        if UgDev.Functions.IsPlayerInAdminMode(player.license) then
+            if not args.ID then args.ID = player end
+            args.ID.Functions.SetGroup(args.Group)
+            args.ID.Functions.Notify('Admin', Languages.GetTranslation('command_setgroup_changed', args.Group, player.Functions.GetSteamName(), player.playerId), 'info', 5000)
+            player.Functions.Notify('Admin', Languages.GetTranslation('command_setgroup_success', args.ID.Functions.GetSteamName(), args.ID.playerId, args.Group), 'success', 5000)
+        else
+            local msgData = {
+                title = 'Admin',
+                message = 'You must be in STAFF Mode to use this!',
+                type = 'error',
+                length = 5000
+            }
+            return showError(msgData)
+        end
+    else
         if not args.ID then args.ID = player end
         args.ID.Functions.SetGroup(args.Group)
-        args.ID.Functions.Notify('Admin', Languages.GetTranslation('command_setgroup_changed', args.Group, player.Functions.GetSteamName(), player.playerId), 'info', 5000)
-        player.Functions.Notify('Admin', Languages.GetTranslation('command_setgroup_success', args.ID.Functions.GetSteamName(), args.ID.playerId, args.Group), 'success', 5000)
-    else
-        local msgData = {
-            title = 'Admin',
-            message = 'You must be in STAFF Mode to use this!',
-            type = 'error',
-            length = 5000
-        }
-        return showError(msgData)
+        args.ID.Functions.Notify('Admin', Languages.GetTranslation('command_setgroup_changed', args.Group, 'Console', 'Console'), 'info', 5000)
+        print('[ug-admin] ^2(SUCCESS)^7: ' .. Languages.GetTranslation('command_setgroup_success', args.ID.Functions.GetSteamName(), args.ID.playerId, args.Group))
     end
-end, false, {
+end, true, {
     help = Languages.GetTranslation('command_setgroup'),
     validate = true,
     arguments = { 
