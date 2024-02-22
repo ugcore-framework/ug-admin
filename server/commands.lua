@@ -4,13 +4,13 @@ UgCore.Commands.CreateCommand('staffmode', Config.AdminGroups, function (player,
     if not UgDev.Functions.IsPlayerInAdminMode(player.license) then
         UgDev.AdminsOnDuty[player.license] = player
         player.Functions.Notify('STAFF Mode', Languages.GetTranslation('command_staffduty_joined'), 'success', 5000)
-        for _, v in pairs(UgCore.Functions.GetUgPlayers()) do
+        for _, v in pairs(UgCore.Functions.GetUGPlayers()) do
             v.Functions.TriggerEvent('ug-admin:Client:STAFFMode', player.playerId, player.Functions.GetSteamName(), true)
         end
     else
         UgDev.AdminsOnDuty[player.license] = nil
         player.Functions.Notify('STAFF Mode', Languages.GetTranslation('command_staffduty_left'), 'error', 5000)
-        for _, v in pairs(UgCore.Functions.GetUgPlayers()) do
+        for _, v in pairs(UgCore.Functions.GetUGPlayers()) do
             v.Functions.TriggerEvent('ug-admin:Client:STAFFMode', player.playerId, player.Functions.GetSteamName(), false)
         end
     end 
@@ -22,7 +22,7 @@ end, false, {
 
 UgCore.Commands.CreateCommand('admins', 'user', function (player, args)
     local adminList = { }
-    for _, admin in pairs(UgCore.Functions.GetUgPlayers()) do
+    for _, admin in pairs(UgCore.Functions.GetUGPlayers()) do
         if UgCore.Functions.IsPlayerAdmin(admin.source) then
             if UgDev.Functions.IsPlayerInAdminMode(admin.license) then
                 adminList[admin.license] = {
